@@ -1,0 +1,135 @@
+
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LEGACY PANEL | Login</title>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<style>
+*{box-sizing:border-box}
+body{
+ margin:0;min-height:100vh;display:flex;align-items:center;
+ justify-content:center;background:#090708;color:#fff;
+ font-family:Arial,sans-serif;padding:20px;
+}
+.card{
+ width:100%;max-width:420px;padding:35px 25px;
+ background:#171013;border:1px solid #57202f;
+ border-radius:18px;box-shadow:0 15px 60px #000;
+}
+.logo{text-align:center;color:#bd526f;font-size:28px;
+ font-weight:bold;letter-spacing:2px}
+.sub{text-align:center;color:#aaa;margin:10px 0 28px}
+.tabs{display:flex;gap:10px;margin-bottom:22px}
+.tabs button{
+ flex:1;padding:12px;border:1px solid #57202f;
+ background:#21151a;color:#fff;border-radius:9px;
+ cursor:pointer
+}
+.tabs button.active{background:#76263f}
+input{
+ width:100%;padding:14px;margin:8px 0;
+ border:1px solid #49303a;border-radius:9px;
+ background:#0d0a0c;color:white;outline:none;
+}
+input:focus{border-color:#bd526f}
+.submit{
+ width:100%;padding:14px;margin-top:15px;
+ border:0;border-radius:9px;background:#862d49;
+ color:white;font-size:16px;font-weight:bold;cursor:pointer
+}
+.submit:disabled{opacity:.5}
+#message{text-align:center;margin-top:18px;font-size:14px;color:#e6a2b5}
+.footer{text-align:center;color:#777;font-size:12px;margin-top:25px}
+</style>
+</head>
+<body>
+<div class="card">
+ <div class="logo">LEGACY PANEL</div>
+ <div class="sub">منصة إدارة البوتات الخاصة بك</div>
+
+ <div class="tabs">
+  <button id="loginTab" class="active" type="button">تسجيل الدخول</button>
+  <button id="signupTab" type="button">إنشاء حساب</button>
+ </div>
+
+ <form id="authForm">
+  <input id="email" type="email" placeholder="البريد الإلكتروني" required>
+  <input id="password" type="password" placeholder="كلمة المرور" minlength="6" required>
+  <button id="submitBtn" class="submit" type="submit">دخول إلى المنصة</button>
+ </form>
+
+ <div id="message"></div>
+ <div class="footer">LEGACY PANEL © 2026 — Developed by Larry</div>
+</div>
+
+<script>
+const SUPABASE_URL = "https://urjcoeyuxuwfmgwogeta.supabase.co";
+const SUPABASE_KEY = "sb_publishable_ERmbRp1Vu9TuWRZThP3ZuA_TsAtMgCJ";
+
+const client = window.supabase.createClient(
+  SUPABASE_URL,
+  SUPABASE_KEY
+);
+
+let mode = "login";
+
+const loginTab = document.getElementById("loginTab");
+const signupTab = document.getElementById("signupTab");
+const submitBtn = document.getElementById("submitBtn");
+const message = document.getElementById("message");
+
+function setMode(nextMode) {
+  mode = nextMode;
+  loginTab.classList.toggle("active", mode === "login");
+  signupTab.classList.toggle("active", mode === "signup");
+  submitBtn.textContent = mode === "login"
+    ? "دخول إلى المنصة"
+    : "إنشاء الحساب";
+  message.textContent = "";
+}
+
+loginTab.addEventListener("click", () => setMode("login"));
+signupTab.addEventListener("click", () => setMode("signup"));
+
+document.getElementById("authForm").addEventListener("submit", async (e) => {
+  e.preventDefault();
+
+  const email = document.getElementById("email").value.trim();
+  const password = document.getElementById("password").value;
+
+  submitBtn.disabled = true;
+  message.textContent = "جارٍ الاتصال...";
+
+  try {
+    let result;
+
+    if (mode === "signup") {
+      result = await client.auth.signUp({ email, password });
+
+      if (!result.error) {
+        message.textContent = result.data.session
+          ? "تم إنشاء الحساب بنجاح!"
+          : "تم إنشاء الحساب. تحقق من بريدك لتأكيده.";
+      }
+    } else {
+      result = await client.auth.signInWithPassword({ email, password });
+
+      if (!result.error) {
+        message.textContent = "تم تسجيل الدخول بنجاح!";
+      }
+    }
+
+    if (result.error) {
+      message.textContent = "تعذر إتمام العملية: " + result.error.message;
+    }
+  } catch (error) {
+    message.textContent = "حدث خطأ في الاتصال. حاول مرة أخرى.";
+  } finally {
+    submitBtn.disabled = false;
+  }
+});
+</script>
+</body>
+</html>
