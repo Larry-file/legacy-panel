@@ -266,7 +266,6 @@ function render() {
     return;
   }
 
-  // باقي الصفحات حالياً تعرض نفس الرسالة التوضيحية
   $('#view').innerHTML = `
     <h2>${t('dash')}</h2>
 
@@ -297,7 +296,6 @@ function render() {
   `;
 }
 
-// أحداث القائمة واللغة
 $('#menuBtn').onclick = () => {
   $('#side').classList.add('open');
   $('#scrim').classList.add('open');
@@ -311,7 +309,6 @@ $('#langBtn').onclick = () => {
   render();
 };
 
-// البدء
 (async () => {
   applyLang();
 
