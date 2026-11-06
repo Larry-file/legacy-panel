@@ -100,7 +100,7 @@ document.getElementById('authForm').onsubmit=async(e)=>{
  const email=document.getElementById('email').value.trim();
  const password=document.getElementById('password').value;
 
- if(SUPABASE_KEY==='ضع_PUBLISHABLE_KEY_هنا'){
+ if(SUPABASE_KEY===''){
   message.textContent='أضف Publishable Key داخل الكود أولاً.';
   return;
  }
