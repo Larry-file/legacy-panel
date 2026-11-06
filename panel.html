@@ -8,376 +8,324 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <title>LEGACY PANEL</title>
 <style>
-:root{--bg:#090708;--bg2:#120c0f;--card:#171013;--line:#3a1a26;--wine:#862d49;--wine2:#a8385a;--rose:#e6a2b5;--txt:#f4eef0;--mut:#a89aa0;--ok:#5fbf8a;--bad:#e5677d;--safe-t:env(safe-area-inset-top,0px);--safe-b:env(safe-area-inset-bottom,0px);--safe-l:env(safe-area-inset-left,0px);--safe-r:env(safe-area-inset-right,0px)}
+:root{
+  --bg:#090708;--bg2:#120c0f;--card:#171013;--line:#3a1a26;
+  --wine:#862d49;--wine2:#a8385a;--rose:#e6a2b5;--txt:#f4eef0;
+  --mut:#a89aa0;--ok:#5fbf8a;--bad:#e5677d;
+  --safe-t:env(safe-area-inset-top,0px);
+  --safe-b:env(safe-area-inset-bottom,0px);
+  --safe-l:env(safe-area-inset-left,0px);
+  --safe-r:env(safe-area-inset-right,0px);
+}
 *{box-sizing:border-box;margin:0;-webkit-tap-highlight-color:transparent}
 html{-webkit-text-size-adjust:100%;height:100%}
-body{min-height:100%;background:var(--bg);color:var(--txt);font:16px/1.6 -apple-system,"SF Pro Text","Segoe UI",Tahoma,Arial,sans-serif;overscroll-behavior-y:none}
+body{
+  min-height:100%;background:var(--bg);color:var(--txt);
+  font:16px/1.6 -apple-system,"SF Pro Text","Segoe UI",Tahoma,Arial,sans-serif;
+  overscroll-behavior-y:none;
+}
 [hidden]{display:none!important}
-.boot{position:fixed;inset:0;display:grid;place-items:center;color:var(--rose);font-weight:800;letter-spacing:3px;padding:20px;text-align:center}
-.top{position:fixed;top:0;inset-inline:0;z-index:20;display:flex;align-items:center;justify-content:space-between;padding:calc(var(--safe-t) + 8px) calc(var(--safe-r) + 12px) 8px calc(var(--safe-l) + 12px);background:rgba(9,7,8,.92);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+.boot{
+  position:fixed;inset:0;display:grid;place-items:center;
+  color:var(--rose);font-weight:800;letter-spacing:3px;
+  padding:20px;text-align:center;
+}
+.top{
+  position:fixed;top:0;inset-inline:0;z-index:20;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:calc(var(--safe-t) + 8px) calc(var(--safe-r) + 12px) 8px calc(var(--safe-l) + 12px);
+  background:rgba(9,7,8,.92);backdrop-filter:blur(12px);
+  border-bottom:1px solid var(--line);
+}
 .brand{color:var(--rose);font-weight:800;letter-spacing:2px}
 .brand.big{font-size:20px;padding:6px 8px 18px}
-.icon{min-width:44px;height:44px;border:1px solid var(--line);border-radius:12px;background:var(--bg2);color:var(--txt);font-size:15px;cursor:pointer}
-.side{position:fixed;z-index:30;top:0;bottom:0;inset-inline-start:0;width:272px;max-width:82vw;background:var(--bg2);border-inline-end:1px solid var(--line);padding:calc(var(--safe-t) + 16px) 14px calc(var(--safe-b) + 16px);display:flex;flex-direction:column;transform:translateX(100%);transition:transform .22s}
+.icon{
+  min-width:44px;height:44px;border:1px solid var(--line);
+  border-radius:12px;background:var(--bg2);color:var(--txt);
+  font-size:15px;cursor:pointer;
+}
+.side{
+  position:fixed;z-index:30;top:0;bottom:0;inset-inline-start:0;
+  width:272px;max-width:82vw;background:var(--bg2);
+  border-inline-end:1px solid var(--line);
+  padding:calc(var(--safe-t) + 16px) 14px calc(var(--safe-b) + 16px);
+  display:flex;flex-direction:column;
+  transform:translateX(100%);transition:transform .22s;
+}
 [dir=ltr] .side{transform:translateX(-100%)}
 .side.open{transform:none}
 .scrim{position:fixed;inset:0;z-index:25;background:rgba(0,0,0,.6);display:none}
 .scrim.open{display:block}
 nav{display:flex;flex-direction:column;gap:6px;flex:1;overflow:auto}
-nav button{display:flex;align-items:center;gap:12px;min-height:48px;padding:0 14px;border:0;border-radius:12px;background:none;color:var(--mut);font:inherit;font-weight:600;text-align:start;cursor:pointer}
+nav button{
+  display:flex;align-items:center;gap:12px;min-height:48px;
+  padding:0 14px;border:0;border-radius:12px;background:none;
+  color:var(--mut);font:inherit;font-weight:600;text-align:start;cursor:pointer;
+}
 nav button.on{background:linear-gradient(135deg,#5a1d31,var(--wine));color:#fff}
-.who{display:flex;flex-direction:column;gap:6px;padding:12px 8px;border-top:1px solid var(--line);font-size:13px;color:var(--mut);word-break:break-all}
-.pill{align-self:flex-start;padding:2px 10px;border-radius:99px;background:#351522;color:var(--rose);font-size:12px;font-weight:700}
+.who{
+  display:flex;flex-direction:column;gap:6px;padding:12px 8px;
+  border-top:1px solid var(--line);font-size:13px;color:var(--mut);word-break:break-all;
+}
+.pill{
+  align-self:flex-start;padding:2px 10px;border-radius:99px;
+  background:#351522;color:var(--rose);font-size:12px;font-weight:700;
+}
 .dev{font-size:12px;color:#7a6a71;padding:0 8px}
-main{padding:calc(var(--safe-t) + 74px) calc(var(--safe-r) + 16px) calc(var(--safe-b) + 32px) calc(var(--safe-l) + 16px);max-width:1000px;margin:auto}
+main{
+  padding:calc(var(--safe-t) + 74px) calc(var(--safe-r) + 16px) calc(var(--safe-b) + 32px) calc(var(--safe-l) + 16px);
+  max-width:1000px;margin:auto;
+}
 h2{font-size:22px;margin-bottom:16px}
 h3{font-size:16px;color:var(--rose);margin-bottom:10px}
+.card{
+  background:var(--card);border:1px solid var(--line);
+  border-radius:16px;padding:18px;margin-bottom:12px;
+}
 .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;margin-bottom:16px}
-.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:18px;margin-bottom:12px}
 .grid .card{margin:0}
 .num{font-size:30px;font-weight:800;color:#fff;line-height:1.2}
 .mut{color:var(--mut);font-size:14px}
 .row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
-.row.sb{justify-content:space-between}
-.btn{min-height:44px;padding:0 18px;border:0;border-radius:11px;background:var(--wine);color:#fff;font:inherit;font-weight:700;cursor:pointer}
+.btn{
+  min-height:44px;padding:0 18px;border:0;border-radius:11px;
+  background:var(--wine);color:#fff;font:inherit;font-weight:700;cursor:pointer;
+}
 .btn:active{background:var(--wine2)}
 .btn.ghost{background:#21151a;border:1px solid var(--line)}
 .btn.bad{background:#5a1a26}
 .btn.sm{min-height:38px;padding:0 12px;font-size:14px}
-.btn:disabled{opacity:.45}
-input,select,textarea{width:100%;min-height:46px;padding:10px 14px;margin:6px 0;border:1px solid #49303a;border-radius:11px;background:#0d0a0c;color:var(--txt);font:inherit;font-size:16px}
-textarea{min-height:46vh;font-family:ui-monospace,Menlo,monospace;font-size:14px;direction:ltr;text-align:left}
-label{font-size:13px;color:var(--mut)}
-.bar{height:8px;border-radius:9px;background:#24141b;overflow:hidden;margin:8px 0 4px}
-.bar i{display:block;height:100%;background:linear-gradient(90deg,var(--wine),var(--rose))}
-.dot{display:inline-block;width:10px;height:10px;border-radius:50%;background:#6b5560;margin-inline-end:8px}
-.dot.on{background:var(--ok)}
-.console{height:52vh;overflow:auto;background:#050304;border:1px solid var(--line);border-radius:12px;padding:12px;font:13px/1.55 ui-monospace,Menlo,monospace;direction:ltr;text-align:left;white-space:pre-wrap;word-break:break-all}
-.console .err{color:var(--bad)}.console .system,.console .install{color:var(--rose)}.console .in{color:#8fb7ff}
-.file{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:10px 4px;border-bottom:1px solid #26151c}
-.file>button.name{flex:1;min-width:0;text-align:start;background:none;border:0;color:var(--txt);font:inherit;cursor:pointer;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;direction:ltr}
-.crumbs{direction:ltr;text-align:left;color:var(--rose);font-size:14px;margin:6px 0 10px;word-break:break-all}
-table{width:100%;border-collapse:collapse;font-size:14px}
-.tw{overflow-x:auto}
-td,th{padding:10px 8px;border-bottom:1px solid #26151c;text-align:start;white-space:nowrap}
-td input{min-width:70px;margin:0;min-height:38px}
-dialog{width:min(94vw,640px);border:1px solid var(--line);border-radius:16px;background:var(--card);color:var(--txt);padding:18px}
-dialog::backdrop{background:rgba(0,0,0,.72)}
-.toast{position:fixed;inset-inline:16px;bottom:calc(var(--safe-b) + 16px);z-index:50;max-width:420px;margin:auto;padding:12px 16px;border-radius:12px;background:#2a1019;border:1px solid var(--wine);text-align:center;opacity:0;pointer-events:none;transition:opacity .2s}
+.notice{
+  background:linear-gradient(135deg,#2a1520,#1a0f15);
+  border:1px solid var(--wine);border-radius:16px;padding:20px;margin-bottom:16px;
+  line-height:1.8;
+}
+.notice strong{color:var(--rose)}
+.toast{
+  position:fixed;inset-inline:16px;bottom:calc(var(--safe-b) + 16px);z-index:50;
+  max-width:420px;margin:auto;padding:12px 16px;border-radius:12px;
+  background:#2a1019;border:1px solid var(--wine);text-align:center;
+  opacity:0;pointer-events:none;transition:opacity .2s;
+}
 .toast.show{opacity:1}
-.empty{text-align:center;color:var(--mut);padding:28px 8px}
 @media(min-width:900px){
   .top{display:none}
   .side{transform:none!important;inset-inline-start:0}
   main{margin-inline-start:296px;margin-inline-end:auto;padding-top:32px}
   .scrim{display:none!important}
 }
-@media(prefers-reduced-motion:reduce){*{transition:none!important}}
 </style>
 </head>
 <body>
 <div id="boot" class="boot">LEGACY PANEL</div>
+
 <div id="app" hidden>
   <header class="top">
     <button id="menuBtn" class="icon" aria-label="menu">☰</button>
     <div class="brand">LEGACY PANEL</div>
-    <button id="langBtn" class="icon"></button>
+    <button id="langBtn" class="icon">EN</button>
   </header>
+
   <aside id="side" class="side">
     <div class="brand big">LEGACY PANEL</div>
     <nav id="nav"></nav>
-    <div class="who"><span id="whoMail"></span><span id="whoRole" class="pill"></span></div>
+    <div class="who">
+      <span id="whoMail"></span>
+      <span id="whoRole" class="pill">USER</span>
+    </div>
     <div class="dev">Developed by Larry</div>
   </aside>
+
   <div id="scrim" class="scrim"></div>
   <main id="view"></main>
 </div>
-<dialog id="dlg"><form method="dialog" id="dlgForm"></form></dialog>
+
 <div id="toast" class="toast"></div>
-<script>
-// عنوان الـ Backend (خادم منفصل). لا تضع هنا أي Secret.
-window.LEGACY_CONFIG = {
-  API_URL: 'https://api.your-domain.com',
-  SUPABASE_URL: 'https://urjcoeyuxuwfmgwogeta.supabase.co',
-  SUPABASE_KEY: 'sb_publishable_ERmbRp1Vu9TuWRZThP3ZuA_TsAtMgCJ' // Publishable فقط
-};
-</script>
+
 <script type="module">
 import { createClient } from 'https://esm.sh/@supabase/supabase-js@2';
 
-const C = window.LEGACY_CONFIG;
-const sb = createClient(C.SUPABASE_URL, C.SUPABASE_KEY);
-const $ = (s) => document.querySelector(s);
-const esc = (v) => String(v ?? '').replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+const SUPABASE_URL = 'https://urjcoeyuxuwfmgwogeta.supabase.co';
+const SUPABASE_KEY = 'sb_publishable_ERmbRp1Vu9TuWRZThP3ZuA_TsAtMgCJ';
+const sb = createClient(SUPABASE_URL, SUPABASE_KEY);
 
-// ---------- اللغة ----------
+const $ = (s) => document.querySelector(s);
+const esc = (v) => String(v ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+
+let lang = localStorage.getItem('lp_lang') || 'ar';
+let page = 'dash';
+let userEmail = '';
+
 const T = {
   ar: {
-    dash: 'لوحة التحكم', bots: 'إدارة البوتات', console: 'الكونسول', files: 'مدير الملفات', res: 'الموارد', settings: 'إعدادات الحساب', admin: 'إدارة المستخدمين',
-    running: 'يعمل', stopped: 'متوقف', total: 'عدد البوتات', active: 'البوتات الشغّالة', storage: 'التخزين', role: 'الصلاحية',
-    addBot: 'إضافة بوت', name: 'اسم البوت', entry: 'ملف التشغيل (مثال: index.js)', token: 'توكن Discord (يُشفَّر ولا يُعرض مجددًا)', add: 'إضافة',
-    start: 'تشغيل', stop: 'إيقاف', restart: 'إعادة تشغيل', install: 'تثبيت الحزم', del: 'حذف', save: 'حفظ', cancel: 'إلغاء', open: 'فتح',
-    noBots: 'لا توجد بوتات بعد. أضف أول بوت من صفحة إدارة البوتات.', pick: 'اختر بوتًا', send: 'إرسال', input: 'أرسل نصًا إلى البوت (stdin)',
-    upload: 'رفع ملفات', newFolder: 'مجلد جديد', newFile: 'ملف جديد', rename: 'إعادة تسمية', up: 'للأعلى', empty: 'المجلد فارغ',
-    ram: 'الذاكرة RAM (MB)', cpu: 'المعالج CPU (أنوية)', disk: 'التخزين (MB)', limits: 'الحدود', apply: 'تطبيق (يسري عند إعادة التشغيل)',
-    email: 'البريد الإلكتروني', newPass: 'كلمة مرور جديدة', changePass: 'تغيير كلمة المرور', changeMail: 'تغيير البريد', logout: 'تسجيل الخروج', language: 'اللغة',
-    maxBots: 'أقصى بوتات', suspended: 'موقوف', suspend: 'إيقاف الحساب', unsuspend: 'تفعيل', host: 'الخادم', confirmDel: 'تأكيد الحذف؟ لا يمكن التراجع.',
-    done: 'تم', err: 'خطأ', token2: 'تغيير التوكن', mailNote: 'سيصلك بريد تأكيد على العنوان الجديد.', usedOf: 'مستخدم من', live: 'استهلاك مباشر',
-    loadErr: 'تعذّر الاتصال بالخادم. تحقق من API_URL في config.js.', ownerHint: 'المالك يدير الحدود والمستخدمين ولا يستطيع قراءة ملفات الآخرين.',
+    dash: 'لوحة التحكم',
+    bots: 'إدارة البوتات',
+    console: 'الكونسول',
+    files: 'مدير الملفات',
+    res: 'الموارد',
+    settings: 'إعدادات الحساب',
+    logout: 'تسجيل الخروج',
+    welcome: 'مرحباً بك',
+    offlineTitle: 'الخادم الخلفي قيد التطوير',
+    offlineMsg: 'تم تسجيل دخولك بنجاح. الواجهة جاهزة، لكن الخادم الذي يشغّل البوتات ويدير الملفات لم يُربط بعد. سنكمل بناءه في الخطوات القادمة.',
+    email: 'البريد الإلكتروني',
+    role: 'الصلاحية',
+    status: 'الحالة',
+    online: 'متصل (جلسة نشطة)',
+    backend: 'الخادم الخلفي',
+    notReady: 'غير متصل بعد',
+    next: 'الخطوة القادمة',
+    nextMsg: 'سنبدأ بربط قاعدة البيانات وبناء واجهة إدارة البوتات خطوة بخطوة.',
   },
   en: {
-    dash: 'Dashboard', bots: 'Bot Manager', console: 'Console', files: 'File Manager', res: 'Resources', settings: 'Account Settings', admin: 'Users',
-    running: 'Running', stopped: 'Stopped', total: 'Bots', active: 'Running bots', storage: 'Storage', role: 'Role',
-    addBot: 'Add bot', name: 'Bot name', entry: 'Entry file (e.g. index.js)', token: 'Discord token (encrypted, never shown again)', add: 'Add',
-    start: 'Start', stop: 'Stop', restart: 'Restart', install: 'Install packages', del: 'Delete', save: 'Save', cancel: 'Cancel', open: 'Open',
-    noBots: 'No bots yet. Add your first one in Bot Manager.', pick: 'Select a bot', send: 'Send', input: 'Send text to the bot (stdin)',
-    upload: 'Upload files', newFolder: 'New folder', newFile: 'New file', rename: 'Rename', up: 'Up', empty: 'Folder is empty',
-    ram: 'RAM (MB)', cpu: 'CPU (cores)', disk: 'Storage (MB)', limits: 'Limits', apply: 'Apply (takes effect on restart)',
-    email: 'Email', newPass: 'New password', changePass: 'Change password', changeMail: 'Change email', logout: 'Log out', language: 'Language',
-    maxBots: 'Max bots', suspended: 'Suspended', suspend: 'Suspend', unsuspend: 'Activate', host: 'Host', confirmDel: 'Confirm delete? This cannot be undone.',
-    done: 'Done', err: 'Error', token2: 'Change token', mailNote: 'A confirmation email will be sent to the new address.', usedOf: 'used of', live: 'Live usage',
-    loadErr: 'Cannot reach the server. Check API_URL in config.js.', ownerHint: 'Owners manage limits and users but cannot read other users’ files.',
-  },
+    dash: 'Dashboard',
+    bots: 'Bot Manager',
+    console: 'Console',
+    files: 'File Manager',
+    res: 'Resources',
+    settings: 'Account Settings',
+    logout: 'Log out',
+    welcome: 'Welcome',
+    offlineTitle: 'Backend under development',
+    offlineMsg: 'You are logged in successfully. The interface is ready, but the server that runs bots and manages files is not connected yet. We will build it in the next steps.',
+    email: 'Email',
+    role: 'Role',
+    status: 'Status',
+    online: 'Active session',
+    backend: 'Backend server',
+    notReady: 'Not connected yet',
+    next: 'Next step',
+    nextMsg: 'We will start connecting the database and building the bot management interface step by step.',
+  }
 };
-let lang = localStorage.getItem('lp_lang') || 'ar';
+
 const t = (k) => T[lang][k] || k;
+
 function applyLang() {
-  document.documentElement.lang = lang; document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
+  document.documentElement.lang = lang;
+  document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
   $('#langBtn').textContent = lang === 'ar' ? 'EN' : 'ع';
 }
 
-// ---------- API ----------
-async function api(path, opt = {}) {
-  const { data } = await sb.auth.getSession();
-  if (!data.session) { location.href = 'auth.html'; throw new Error('no session'); }
-  const headers = { Authorization: 'Bearer ' + data.session.access_token, ...(opt.headers || {}) };
-  let body = opt.body;
-  if (body && !(body instanceof Blob) && typeof body !== 'string') { body = JSON.stringify(body); headers['Content-Type'] = 'application/json'; }
-  let r;
-  try { r = await fetch(C.API_URL + '/api' + path, { method: opt.method || 'GET', headers, body }); }
-  catch { throw new Error(t('loadErr')); }
-  const j = await r.json().catch(() => ({}));
-  if (r.status === 401) { await sb.auth.signOut(); location.href = 'auth.html'; }
-  if (!r.ok) throw new Error(j.error || r.statusText);
-  return j;
+function toast(msg) {
+  const el = $('#toast');
+  el.textContent = msg;
+  el.classList.add('show');
+  setTimeout(() => el.classList.remove('show'), 2800);
 }
-let toastT;
-function toast(m) { const el = $('#toast'); el.textContent = m; el.classList.add('show'); clearTimeout(toastT); toastT = setTimeout(() => el.classList.remove('show'), 2800); }
-const guard = (fn) => async (...a) => { try { await fn(...a); } catch (e) { toast(t('err') + ': ' + e.message); } };
 
-// ---------- الحالة ----------
-let me, bots = [], sel = localStorage.getItem('lp_bot') || '', page = 'dash', cwd = '', timer, ws;
-const pages = () => ['dash', 'bots', 'console', 'files', 'res', 'settings', ...(me.role === 'OWNER' ? ['admin'] : [])];
-const icons = { dash: '◈', bots: '⬢', console: '▤', files: '▦', res: '◔', settings: '⚙', admin: '♛' };
-const pct = (a, b) => Math.min(100, Math.round((a / (b || 1)) * 100));
-const bar = (a, b) => `<div class="bar"><i style="width:${pct(a, b)}%"></i></div>`;
-const selBot = () => bots.find((b) => b.id === sel) || bots[0];
-const botPicker = () => bots.length
-  ? `<select id="pick">${bots.map((b) => `<option value="${esc(b.id)}" ${b.id === selBot().id ? 'selected' : ''}>${esc(b.name)}</option>`).join('')}</select>` : '';
+function closeMenu() {
+  $('#side').classList.remove('open');
+  $('#scrim').classList.remove('open');
+}
 
 function nav() {
-  $('#nav').innerHTML = pages().map((p) => `<button data-p="${p}" class="${p === page ? 'on' : ''}"><span>${icons[p]}</span>${t(p)}</button>`).join('');
-  $('#nav').querySelectorAll('button').forEach((b) => (b.onclick = () => go(b.dataset.p)));
-  $('#whoMail').textContent = me.email; $('#whoRole').textContent = me.role;
-}
-function closeMenu() { $('#side').classList.remove('open'); $('#scrim').classList.remove('open'); }
-async function go(p) {
-  page = p; clearInterval(timer); closeMenu(); nav(); if (p !== 'console' && ws) { const w = ws; ws = null; w.close(); }
-  try { await refresh(); await views[p](); } catch (e) { $('#view').innerHTML = `<div class="card">${esc(e.message)}</div>`; }
-}
-async function refresh() { [me, bots] = await Promise.all([api('/me'), api('/bots')]); if (!bots.find((b) => b.id === sel) && bots[0]) sel = bots[0].id; }
-const view = (html) => ($('#view').innerHTML = html);
+  const items = [
+    { id: 'dash', icon: '◈' },
+    { id: 'bots', icon: '⬢' },
+    { id: 'console', icon: '▤' },
+    { id: 'files', icon: '▦' },
+    { id: 'res', icon: '◔' },
+    { id: 'settings', icon: '⚙' },
+  ];
+  $('#nav').innerHTML = items.map(i =>
+    `<button data-p="${i.id}" class="${i.id === page ? 'on' : ''}">
+      <span>${i.icon}</span>${t(i.id)}
+    </button>`
+  ).join('');
 
-// ---------- الصفحات ----------
-const views = {
-  async dash() {
-    const u = me.usage, L = me.limits;
-    view(`<h2>${t('dash')}</h2>
-    <div class="grid">
-      <div class="card"><div class="mut">${t('total')}</div><div class="num">${u.bots}/${L.maxBots}</div></div>
-      <div class="card"><div class="mut">${t('active')}</div><div class="num">${u.running}</div></div>
-      <div class="card"><div class="mut">${t('storage')}</div><div class="num">${u.storage}<span class="mut"> / ${L.storage} MB</span></div>${bar(u.storage, L.storage)}</div>
-      <div class="card"><div class="mut">${t('role')}</div><div class="num">${esc(me.role)}</div></div>
+  $('#nav').querySelectorAll('button').forEach(b => {
+    b.onclick = () => go(b.dataset.p);
+  });
+
+  $('#whoMail').textContent = userEmail;
+  $('#whoRole').textContent = 'USER';
+}
+
+function go(p) {
+  page = p;
+  closeMenu();
+  nav();
+  render();
+}
+
+function render() {
+  if (page === 'settings') {
+    $('#view').innerHTML = `
+      <h2>${t('settings')}</h2>
+      <div class="card">
+        <h3>${t('email')}</h3>
+        <div class="mut" dir="ltr" style="margin-bottom:14px">${esc(userEmail)}</div>
+        <button class="btn bad" id="logoutBtn">${t('logout')}</button>
+      </div>
+    `;
+    $('#logoutBtn').onclick = async () => {
+      await sb.auth.signOut();
+      location.href = 'auth.html';
+    };
+    return;
+  }
+
+  // باقي الصفحات حالياً تعرض نفس الرسالة التوضيحية
+  $('#view').innerHTML = `
+    <h2>${t('dash')}</h2>
+
+    <div class="notice">
+      <strong>${t('offlineTitle')}</strong><br>
+      ${t('offlineMsg')}
     </div>
-    ${bots.length ? bots.map((b) => `<div class="card row sb"><div><span class="dot ${b.running ? 'on' : ''}"></span><b>${esc(b.name)}</b><div class="mut">${b.running ? t('running') : t('stopped')}</div></div>
-      <div class="row"><button class="btn sm" data-a="${b.running ? 'stop' : 'start'}" data-id="${esc(b.id)}">${b.running ? t('stop') : t('start')}</button><button class="btn sm ghost" data-c="${esc(b.id)}">${t('console')}</button></div></div>`).join('')
-      : `<div class="card empty">${t('noBots')}</div>`}`);
-    bindBotActions(); document.querySelectorAll('[data-c]').forEach((b) => (b.onclick = () => { sel = b.dataset.c; go('console'); }));
-  },
 
-  async bots() {
-    view(`<h2>${t('bots')}</h2>
-    <form class="card" id="addForm"><h3>${t('addBot')}</h3>
-      <input id="bn" maxlength="40" placeholder="${t('name')}" required>
-      <input id="be" value="index.js" dir="ltr" placeholder="${t('entry')}" required>
-      <input id="bt" type="password" autocomplete="off" placeholder="${t('token')}">
-      <button class="btn" style="margin-top:8px">${t('add')}</button></form>
-    ${bots.map((b) => `<div class="card"><div class="row sb"><div><span class="dot ${b.running ? 'on' : ''}"></span><b>${esc(b.name)}</b> <span class="mut" dir="ltr">${esc(b.entry)}</span></div><span class="mut">${b.running ? t('running') : t('stopped')}</span></div>
-      <div class="row" style="margin-top:12px">
-        ${b.running ? `<button class="btn sm" data-a="restart" data-id="${esc(b.id)}">${t('restart')}</button><button class="btn sm ghost" data-a="stop" data-id="${esc(b.id)}">${t('stop')}</button>`
-          : `<button class="btn sm" data-a="start" data-id="${esc(b.id)}">${t('start')}</button>`}
-        <button class="btn sm ghost" data-a="install" data-id="${esc(b.id)}" ${b.running ? 'disabled' : ''}>${t('install')}</button>
-        <button class="btn sm ghost" data-tok="${esc(b.id)}">${t('token2')}</button>
-        <button class="btn sm bad" data-del="${esc(b.id)}">${t('del')}</button></div></div>`).join('')}`);
-    $('#addForm').onsubmit = guard(async (e) => {
-      e.preventDefault();
-      const nb = await api('/bots', { method: 'POST', body: { name: $('#bn').value.trim(), entry: $('#be').value.trim(), token: $('#bt').value } });
-      sel = nb.id; toast(t('done')); go('bots');
-    });
-    bindBotActions();
-    document.querySelectorAll('[data-del]').forEach((b) => (b.onclick = guard(async () => { if (confirm(t('confirmDel'))) { await api('/bots/' + b.dataset.del, { method: 'DELETE' }); go('bots'); } })));
-    document.querySelectorAll('[data-tok]').forEach((b) => (b.onclick = guard(async () => {
-      const v = prompt(t('token')); if (v === null) return;
-      await api('/bots/' + b.dataset.tok, { method: 'PATCH', body: { token: v.trim() } }); toast(t('done'));
-    })));
-  },
+    <div class="grid">
+      <div class="card">
+        <div class="mut">${t('email')}</div>
+        <div class="num" style="font-size:16px;margin-top:8px;word-break:break-all" dir="ltr">${esc(userEmail)}</div>
+      </div>
+      <div class="card">
+        <div class="mut">${t('status')}</div>
+        <div class="num" style="font-size:18px;margin-top:8px;color:var(--ok)">${t('online')}</div>
+      </div>
+      <div class="card">
+        <div class="mut">${t('backend')}</div>
+        <div class="num" style="font-size:18px;margin-top:8px;color:var(--bad)">${t('notReady')}</div>
+      </div>
+    </div>
 
-  async console() {
-    if (!bots.length) return view(`<h2>${t('console')}</h2><div class="card empty">${t('noBots')}</div>`);
-    view(`<h2>${t('console')}</h2><div class="card">${botPicker()}<div id="con" class="console"></div>
-      <form class="row" id="cin" style="flex-wrap:nowrap"><input id="ci" dir="ltr" placeholder="${t('input')}" autocomplete="off" autocapitalize="off"><button class="btn">${t('send')}</button></form></div>`);
-    $('#pick').onchange = (e) => { sel = e.target.value; localStorage.setItem('lp_bot', sel); go('console'); };
-    connectWS();
-    $('#cin').onsubmit = (e) => { e.preventDefault(); const v = $('#ci').value; if (v && ws?.readyState === 1) { ws.send(JSON.stringify({ type: 'input', bot: selBot().id, text: v })); $('#ci').value = ''; } };
-  },
+    <div class="card">
+      <h3>${t('next')}</h3>
+      <p class="mut">${t('nextMsg')}</p>
+    </div>
+  `;
+}
 
-  async files() {
-    if (!bots.length) return view(`<h2>${t('files')}</h2><div class="card empty">${t('noBots')}</div>`);
-    const id = selBot().id;
-    const items = await api(`/bots/${id}/files?path=${encodeURIComponent(cwd)}`);
-    const join = (n) => (cwd ? cwd + '/' : '') + n;
-    view(`<h2>${t('files')}</h2><div class="card">${botPicker()}
-      <div class="crumbs">/${esc(cwd)}</div>
-      <div class="row"><button class="btn sm ghost" id="fUp" ${cwd ? '' : 'disabled'}>${t('up')}</button>
-        <button class="btn sm" id="fUpl">${t('upload')}</button><button class="btn sm ghost" id="fDir">${t('newFolder')}</button><button class="btn sm ghost" id="fNew">${t('newFile')}</button>
-        <input type="file" id="fIn" multiple hidden></div>
-      <div style="margin-top:8px">${items.length ? items.map((f, i) => `<div class="file"><button class="name" data-i="${i}">${f.dir ? '📁' : '📄'} ${esc(f.name)}</button>
-        <span class="mut">${f.dir ? '' : (f.size / 1024).toFixed(1) + ' KB'}</span>
-        <button class="btn sm ghost" data-r="${i}">✎</button><button class="btn sm bad" data-x="${i}">✕</button></div>`).join('') : `<div class="empty">${t('empty')}</div>`}</div></div>`);
-    $('#pick').onchange = (e) => { sel = e.target.value; localStorage.setItem('lp_bot', sel); cwd = ''; go('files'); };
-    $('#fUp').onclick = () => { cwd = cwd.split('/').slice(0, -1).join('/'); go('files'); };
-    $('#fUpl').onclick = () => $('#fIn').click();
-    $('#fIn').onchange = guard(async (e) => {
-      for (const f of e.target.files) await api(`/bots/${id}/upload?path=${encodeURIComponent(cwd)}&name=${encodeURIComponent(f.name)}`, { method: 'POST', body: f, headers: { 'Content-Type': 'application/octet-stream' } });
-      toast(t('done')); go('files');
-    });
-    $('#fDir').onclick = guard(async () => { const n = prompt(t('newFolder')); if (n) { await api(`/bots/${id}/mkdir`, { method: 'POST', body: { path: join(n) } }); go('files'); } });
-    $('#fNew').onclick = guard(async () => { const n = prompt(t('newFile')); if (n) editFile(id, join(n), ''); });
-    document.querySelectorAll('.name').forEach((b) => (b.onclick = guard(async () => {
-      const f = items[b.dataset.i];
-      if (f.dir) { cwd = join(f.name); go('files'); } else { const r = await api(`/bots/${id}/file?path=${encodeURIComponent(join(f.name))}`); editFile(id, join(f.name), r.content); }
-    })));
-    document.querySelectorAll('[data-r]').forEach((b) => (b.onclick = guard(async () => {
-      const f = items[b.dataset.r]; const n = prompt(t('rename'), f.name);
-      if (n && n !== f.name) { await api(`/bots/${id}/rename`, { method: 'POST', body: { from: join(f.name), to: join(n) } }); go('files'); }
-    })));
-    document.querySelectorAll('[data-x]').forEach((b) => (b.onclick = guard(async () => {
-      const f = items[b.dataset.x];
-      if (confirm(t('confirmDel') + '\n' + f.name)) { await api(`/bots/${id}/files?path=${encodeURIComponent(join(f.name))}`, { method: 'DELETE' }); go('files'); }
-    })));
-  },
-
-  async res() {
-    const L = me.limits;
-    view(`<h2>${t('res')}</h2><div class="card"><h3>${t('storage')}</h3><div>${me.usage.storage} MB <span class="mut">${t('usedOf')} ${L.storage} MB</span></div>${bar(me.usage.storage, L.storage)}</div>
-    ${bots.length ? bots.map((b) => `<div class="card"><h3>${esc(b.name)}</h3>
-      <div class="mut">${t('live')}</div><div id="st-${esc(b.id)}" class="mut">${b.running ? '…' : t('stopped')}</div>
-      <label>${t('ram')} (≤ ${L.ram})</label><input type="number" inputmode="numeric" id="ram-${esc(b.id)}" min="64" max="${L.ram}" value="${b.ram}">
-      <label>${t('cpu')} (≤ ${L.cpu})</label><input type="number" inputmode="decimal" id="cpu-${esc(b.id)}" min="0.1" max="${L.cpu}" step="0.1" value="${b.cpu}">
-      <button class="btn sm" data-ap="${esc(b.id)}" style="margin-top:8px">${t('apply')}</button></div>`).join('') : `<div class="card empty">${t('noBots')}</div>`}`);
-    document.querySelectorAll('[data-ap]').forEach((b) => (b.onclick = guard(async () => {
-      const id = b.dataset.ap;
-      await api('/bots/' + id, { method: 'PATCH', body: { ram: +$('#ram-' + id).value, cpu: +$('#cpu-' + id).value } }); toast(t('done'));
-    })));
-    const poll = async () => { for (const b of bots.filter((x) => x.running)) {
-      try { const s = await api(`/bots/${b.id}/stats`); const el = $('#st-' + b.id); if (el) el.innerHTML = `CPU ${(s.cpu ?? 0).toFixed(1)}% · RAM ${s.ram ?? 0}/${b.ram} MB · ${t('storage')} ${s.storage} MB${bar(s.ram ?? 0, b.ram)}`; } catch {} } };
-    poll(); timer = setInterval(poll, 6000);
-  },
-
-  async settings() {
-    view(`<h2>${t('settings')}</h2>
-    <div class="card"><h3>${t('language')}</h3><div class="row"><button class="btn sm ${lang === 'ar' ? '' : 'ghost'}" data-l="ar">العربية</button><button class="btn sm ${lang === 'en' ? '' : 'ghost'}" data-l="en">English</button></div></div>
-    <form class="card" id="mailF"><h3>${t('changeMail')}</h3><input id="nm" type="email" dir="ltr" value="${esc(me.email)}" required><div class="mut">${t('mailNote')}</div><button class="btn sm" style="margin-top:8px">${t('save')}</button></form>
-    <form class="card" id="passF"><h3>${t('changePass')}</h3><input id="np" type="password" minlength="6" autocomplete="new-password" placeholder="${t('newPass')}" required><button class="btn sm" style="margin-top:8px">${t('save')}</button></form>
-    <div class="card"><button class="btn bad" id="out">${t('logout')}</button></div>`);
-    document.querySelectorAll('[data-l]').forEach((b) => (b.onclick = () => { lang = b.dataset.l; localStorage.setItem('lp_lang', lang); applyLang(); nav(); go('settings'); }));
-    $('#mailF').onsubmit = guard(async (e) => { e.preventDefault(); const r = await sb.auth.updateUser({ email: $('#nm').value.trim() }); if (r.error) throw r.error; toast(t('mailNote')); });
-    $('#passF').onsubmit = guard(async (e) => { e.preventDefault(); const r = await sb.auth.updateUser({ password: $('#np').value }); if (r.error) throw r.error; $('#np').value = ''; toast(t('done')); });
-    $('#out').onclick = async () => { await sb.auth.signOut(); location.href = 'auth.html'; };
-  },
-
-  async admin() {
-    const [users, sys] = await Promise.all([api('/admin/users'), api('/admin/system')]);
-    view(`<h2>${t('admin')}</h2><div class="card"><h3>${t('host')}</h3>
-      <div class="mut">CPU load ${sys.load.toFixed(2)} / ${sys.cpus} · RAM ${sys.ramTotal - sys.ramFree}/${sys.ramTotal} MB · ${t('storage')} ${sys.diskTotal - sys.diskFree}/${sys.diskTotal} MB</div>${bar(sys.ramTotal - sys.ramFree, sys.ramTotal)}
-      <div class="mut">${t('ownerHint')}</div></div>
-    <div class="card tw"><table><tr><th>${t('email')}</th><th>${t('role')}</th><th>${t('total')}</th><th>${t('maxBots')}</th><th>RAM</th><th>CPU</th><th>${t('disk')}</th><th></th></tr>
-    ${users.map((u) => `<tr data-u="${esc(u.id)}"><td dir="ltr">${esc(u.email)}</td><td>${esc(u.role)}</td><td>${u.bots} (${u.running}) · ${u.storage}MB</td>
-      <td><input type="number" data-k="maxBots" value="${u.limits.maxBots}"></td><td><input type="number" data-k="ram" value="${u.limits.ram}"></td>
-      <td><input type="number" step="0.1" data-k="cpu" value="${u.limits.cpu}"></td><td><input type="number" data-k="storage" value="${u.limits.storage}"></td>
-      <td><button class="btn sm" data-s>${t('save')}</button> ${u.role === 'OWNER' ? '' : `<button class="btn sm ${u.suspended ? '' : 'bad'}" data-sus="${u.suspended ? 0 : 1}">${u.suspended ? t('unsuspend') : t('suspend')}</button>`}</td></tr>`).join('')}</table></div>`);
-    document.querySelectorAll('tr[data-u]').forEach((tr) => {
-      const id = tr.dataset.u;
-      tr.querySelector('[data-s]').onclick = guard(async () => {
-        const limits = {}; tr.querySelectorAll('[data-k]').forEach((i) => (limits[i.dataset.k] = +i.value));
-        await api('/admin/users/' + id, { method: 'PATCH', body: { limits } }); toast(t('done'));
-      });
-      tr.querySelector('[data-sus]')?.addEventListener('click', guard(async (e) => {
-        await api('/admin/users/' + id, { method: 'PATCH', body: { suspended: e.target.dataset.sus === '1' } }); go('admin');
-      }));
-    });
-  },
+// أحداث القائمة واللغة
+$('#menuBtn').onclick = () => {
+  $('#side').classList.add('open');
+  $('#scrim').classList.add('open');
+};
+$('#scrim').onclick = closeMenu;
+$('#langBtn').onclick = () => {
+  lang = lang === 'ar' ? 'en' : 'ar';
+  localStorage.setItem('lp_lang', lang);
+  applyLang();
+  nav();
+  render();
 };
 
-// ---------- أفعال مشتركة ----------
-function bindBotActions() {
-  document.querySelectorAll('[data-a]').forEach((b) => (b.onclick = guard(async () => {
-    b.disabled = true;
-    await api(`/bots/${b.dataset.id}/${b.dataset.a}`, { method: 'POST' });
-    if (b.dataset.a === 'install') { sel = b.dataset.id; toast(t('done')); go('console'); } else { await new Promise((r) => setTimeout(r, 700)); go(page); }
-  })));
-}
-function editFile(id, p, content) {
-  const f = $('#dlgForm');
-  f.innerHTML = `<h3 dir="ltr" style="text-align:start">${esc(p)}</h3><textarea id="ed" spellcheck="false" autocapitalize="off" autocorrect="off">${esc(content)}</textarea>
-    <div class="row" style="margin-top:10px"><button type="button" class="btn" id="edS">${t('save')}</button><button class="btn ghost" value="cancel">${t('cancel')}</button></div>`;
-  $('#dlg').showModal();
-  $('#edS').onclick = guard(async () => { await api(`/bots/${id}/file`, { method: 'PUT', body: { path: p, content: $('#ed').value } }); $('#dlg').close(); toast(t('done')); go('files'); });
-}
-
-// ---------- الكونسول المباشر (WebSocket) ----------
-function paint(l) {
-  const c = $('#con'); if (!c) return;
-  const d = document.createElement('div'); d.className = l.s; d.textContent = l.m; c.appendChild(d);
-  while (c.childElementCount > 1000) c.firstChild.remove();
-  c.scrollTop = c.scrollHeight;
-}
-async function connectWS() {
-  ws?.close();
-  const { data } = await sb.auth.getSession(); if (!data.session) return;
-  const bot = selBot().id;
-  const sock = (ws = new WebSocket(C.API_URL.replace(/^http/, 'ws') + '/ws'));
-  sock.onopen = () => sock.send(JSON.stringify({ type: 'auth', token: data.session.access_token }));
-  sock.onmessage = (e) => {
-    const m = JSON.parse(e.data);
-    if (m.type === 'ready') sock.send(JSON.stringify({ type: 'sub', bot }));
-    else if (m.type === 'history') { const c = $('#con'); if (c) c.innerHTML = ''; m.lines.forEach(paint); }
-    else if (m.type === 'line' && m.bot === bot) paint(m.line);
-    else if (m.type === 'error') toast(m.error);
-  };
-  sock.onclose = () => { if (page === 'console' && ws === sock) setTimeout(() => page === 'console' && ws === sock && connectWS(), 3000); };
-}
-
-// ---------- البدء ----------
-$('#menuBtn').onclick = () => { $('#side').classList.add('open'); $('#scrim').classList.add('open'); };
-$('#scrim').onclick = closeMenu;
-$('#langBtn').onclick = () => { lang = lang === 'ar' ? 'en' : 'ar'; localStorage.setItem('lp_lang', lang); applyLang(); go(page); };
+// البدء
 (async () => {
   applyLang();
+
   const { data } = await sb.auth.getSession();
-  if (!data.session) return (location.href = 'auth.html');
-  try { await refresh(); } catch (e) { $('#boot').textContent = e.message; return; }
-  $('#boot').hidden = true; $('#app').hidden = false;
+  if (!data.session) {
+    location.href = 'auth.html';
+    return;
+  }
+
+  userEmail = data.session.user.email || '—';
+
+  $('#boot').hidden = true;
+  $('#app').hidden = false;
+  nav();
   go('dash');
 })();
 </script>
